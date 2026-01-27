@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planeterra Foundation | Digital Marketing Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest: #1a5f2a;
+            --leaf: #4caf50;
+            --earth: #5d4037;
+            --sand: #f5e6d3;
+            --cream: #faf8f5;
+            --gold: #d4a017;
+            --sky: #87ceeb;
+            --deep: #0d3320;
+            --orange: #e67e22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            background: var(--deep);
+            color: var(--deep);
+            overflow-x: hidden;
+        }
+
+        /* ========== HERO COVER ========== */
+        .hero-cover {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--deep) 0%, var(--forest) 50%, var(--deep) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(76, 175, 80, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 160, 23, 0.1) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 40px;
+            max-width: 1000px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--deep);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 12px 30px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+        }
+
+        .hero-logo {
+            width: 200px;
+            margin-bottom: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero-title .highlight {
+            color: var(--gold);
+            display: block;
+            font-size: 0.5em;
+            letter-spacing: 8px;
+            margin-top: 10px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 10px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: rgba(255,255,255,0.5);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ========== SLIDE SECTIONS ========== */
+        .slide {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .slide-about {
+            background: var(--cream);
+        }
+
+        .about-header {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--deep) 100%);
+            padding: 100px 60px 80px;
+            text-align: center;
+        }
+
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .about-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .about-header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .about-panel {
+            padding: 60px;
+            background: var(--cream);
+        }
+
+        .about-panel.dark {
+            background: var(--sand);
+        }
+
+        .about-panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--deep);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .about-panel p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .about-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-panel li {
+            padding: 15px 0 15px 30px;
+            position: relative;
+            font-size: 1rem;
+            color: #333;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .about-panel li::before {
+            content: '🌿';
+            position: absolute;
+            left: 0;
+            top: 15px;
+        }
+
+        .mission-box {
+            grid-column: span 2;
+            background: var(--deep);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .mission-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .mission-box p {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: white;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .mission-box p .accent {
+            color: var(--gold);
+        }
+
+        /* ========== DIGITAL PLATFORMS ========== */
+        .slide-platforms {
+            background: var(--deep);
+        }
+
+        .platforms-header {
+            padding: 100px 60px 60px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .platforms-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: white;
+        }
+
+        .platforms-header h2 span {
+            color: var(--gold);
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .platform-card {
+            padding: 50px 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .platform-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--leaf) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 1.8rem;
+        }
+
+        .platform-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .platform-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .platform-handle {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .website-highlight {
+            grid-column: span 3;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--deep) 100%);
+            padding: 80px 60px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .website-info {
+            flex: 1;
+        }
+
+        .website-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .website-info p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .website-features {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .qr-section {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            min-width: 250px;
+        }
+
+        .qr-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--deep);
+            margin-bottom: 20px;
+        }
+
+        .qr-code {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 15px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .qr-url {
+            font-size: 0.9rem;
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        /* ========== SWOT ANALYSIS ========== */
+        .slide-swot {
+            background: var(--cream);
+        }
+
+        .swot-header {
+            background: var(--sand);
+            padding: 100px 60px 60px;
+            text-align: center;
+        }
+
+        .swot-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--deep);
+        }
+
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+
+        .swot-card {
+            padding: 50px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .swot-card.strengths {
+            background: linear-gradient(135deg, #e8f5e9 0%, var(--cream) 100%);
+        }
+
+        .swot-card.weaknesses {
+            background: linear-gradient(135deg, #fff3e0 0%, var(--cream) 100%);
+        }
+
+        .swot-card.opportunities {
+            background: linear-gradient(135deg, #e3f2fd 0%, var(--cream) 100%);
+        }
+
+        .swot-card.threats {
+            background: linear-gradient(135deg, #fce4ec 0%, var(--cream) 100%);
+        }
+
+        .swot-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .swot-card.strengths h3 {
+            color: var(--forest);
+            border-bottom: 3px solid var(--forest);
+        }
+
+        .swot-card.weaknesses h3 {
+            color: var(--orange);
+            border-bottom: 3px solid var(--orange);
+        }
+
+        .swot-card.opportunities h3 {
+            color: #1976d2;
+            border-bottom: 3px solid #1976d2;
+        }
+
+        .swot-card.threats h3 {
+            color: #c62828;
+            border-bottom: 3px solid #c62828;
+        }
+
+        .swot-card ul {
+            list-style: none;
+        }
+
+        .swot-card li {
+            padding: 12px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .swot-card.strengths li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--forest);
+            font-weight: bold;
+        }
+
+        .swot-card.weaknesses li::before {
+            content: '!';
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+            font-weight: bold;
+        }
+
+        .swot-card.opportunities li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .swot-card.threats li::before {
+            content: '×';
+            position: absolute;
+            left: 0;
+            color: #c62828;
+            font-weight: bold;
+        }
+
+        /* ========== COMPETITORS ========== */
+        .slide-competitors {
+            background: var(--deep);
+        }
+
+        .competitors-header {
+            padding: 100px 60px 60px;
+            text-align: center;
+        }
+
+        .competitors-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: white;
+        }
+
+        .competitors-header h2 span {
+            color: var(--gold);
+        }
+
+        .competitors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0 60px 80px;
+        }
+
+        .competitor-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .competitor-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .competitor-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .competitor-card .type {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--deep);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .competitor-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .competitor-card .focus {
+            font-size: 0.85rem;
+            color: var(--leaf);
+            font-weight: 600;
+        }
+
+        /* ========== RECOMMENDATIONS ========== */
+        .slide-recommendations {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--sand) 100%);
+        }
+
+        .recommendations-header {
+            background: var(--deep);
+            padding: 100px 60px 80px;
+            text-align: center;
+        }
+
+        .recommendations-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: white;
+        }
+
+        .recommendations-header h2 span {
+            color: var(--gold);
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 60px;
+        }
+
+        .recommendation-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .recommendation-card .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(26, 95, 42, 0.1);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--deep);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .recommendation-card p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .recommendation-card .tag {
+            display: inline-block;
+            background: var(--forest);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ========== QR CODES SECTION ========== */
+        .slide-qr {
+            background: var(--deep);
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .slide-qr h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .slide-qr > p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+        }
+
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .qr-item {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .qr-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--deep);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .qr-item img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 15px;
+        }
+
+        .qr-item .handle {
+            font-size: 0.9rem;
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--cream);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .footer-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--deep);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .footer-quote .accent {
+            color: var(--forest);
+        }
+
+        .credits {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .credits strong {
+            color: var(--deep);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .platform-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .website-highlight {
+                grid-column: span 2;
+                flex-direction: column;
+            }
+
+            .competitors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qr-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-content,
+            .swot-grid,
+            .recommendations-grid,
+            .platform-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-box,
+            .website-highlight {
+                grid-column: span 1;
+            }
+
+            .hero-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .qr-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-panel,
+            .swot-card,
+            .recommendations-grid {
+                padding: 40px 30px;
+            }
+        }
+
+        /* ========== QR CODE BADGE - TOP LEFT ========== */
+        .qr-badge {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 245, 0.98) 100%);
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 2px solid var(--forest);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 20px rgba(26, 95, 42, 0.2);
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.5s ease-out;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .qr-badge:hover {
+            border-color: var(--deep);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 30px rgba(26, 95, 42, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .qr-badge .qr-code-container {
+            background: #fff;
+            padding: 6px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-badge .qr-code-container img {
+            display: block;
+        }
+        
+        .qr-badge-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .qr-badge-text span {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .qr-badge-text strong {
+            color: var(--forest);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .qr-badge.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-100px);
+        }
+
+        /* QR Toggle Button */
+        .qr-toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1002;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 245, 0.98) 100%);
+            border: 2px solid var(--forest);
+            color: var(--forest);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .qr-toggle-btn.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .qr-toggle-btn:hover {
+            background: var(--forest);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* QR Modal Overlay */
+        .qr-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 51, 32, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .qr-modal-overlay.active {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .qr-modal {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 248, 245, 1) 100%);
+            padding: 40px;
+            border-radius: 24px;
+            border: 3px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 160, 23, 0.3);
+            text-align: center;
+            animation: scaleIn 0.3s ease;
+        }
+        
+        @keyframes scaleIn {
+            from { 
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .qr-modal h2 {
+            color: var(--forest);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .qr-modal p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+        
+        .qr-modal .qr-code-large {
+            background: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .qr-modal .qr-code-large img {
+            display: block;
+        }
+        
+        .qr-modal .close-hint {
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        /* Fullscreen Button */
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 245, 0.98) 100%);
+            border: 2px solid var(--forest);
+            color: var(--forest);
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .fullscreen-btn:hover {
+            background: var(--forest);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(26, 95, 42, 0.3);
+        }
+
+        .fullscreen-btn:active {
+            transform: scale(0.98);
+        }
+
+        .fullscreen-btn .icon {
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .qr-badge {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin: 0 auto 20px auto;
+                width: fit-content;
+            }
+
+            .fullscreen-btn {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- QR Code Badge - Top Left (Clickable) -->
+    <div class="qr-badge" id="qrBadge" onclick="openQRModal()">
+        <div class="qr-code-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://regenfren.github.io/planeterra-1/" alt="QR Code" width="80" height="80">
+        </div>
+        <div class="qr-badge-text">
+            <span>Click to enlarge</span>
+            <strong>🌿 Scan Me!</strong>
+        </div>
+    </div>
+
+    <!-- QR Toggle Button -->
+    <button class="qr-toggle-btn" id="qrToggleBtn" onclick="toggleQRBadge()" title="Toggle QR Code">
+        <span id="qrToggleIcon">👁️</span>
+        <span id="qrToggleText">Show QR</span>
+    </button>
+
+    <!-- Fullscreen Button -->
+    <button class="fullscreen-btn" onclick="toggleFullscreen()" id="fullscreenBtn" title="Press F for fullscreen">
+        <span class="icon" id="fullscreenIcon">⛶</span>
+        <span id="fullscreenText">Fullscreen</span>
+    </button>
+    
+    <!-- QR Modal (Enlarged View) -->
+    <div class="qr-modal-overlay" id="qrModal" onclick="closeQRModal()">
+        <div class="qr-modal" onclick="event.stopPropagation()">
+            <h2>🌿 Scan to View on Your Phone</h2>
+            <p>Point your camera at the QR code</p>
+            <div class="qr-code-large">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://regenfren.github.io/planeterra-1/" alt="QR Code" width="280" height="280">
+            </div>
+            <p class="close-hint">Click anywhere to close</p>
+        </div>
+    </div>
+
+    <!-- ========== HERO COVER ========== -->
+    <section class="hero-cover">
+        <div class="hero-content">
+            <span class="badge">KEDGE Business School • Digital Marketing Project</span>
+            
+            <img src="https://planeterra.org/wp-content/uploads/2021/08/plogo.png" alt="Planeterra Logo" class="hero-logo">
+            
+            <h1 class="hero-title">
+                Planeterra
+                <span class="highlight">Digital Marketing Audit</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Turning Travel Into Impact: An analysis of the world's leading NGO using community-based tourism to transform lives and protect communities.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Community Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2,800+</div>
+                    <div class="stat-label">Women Empowered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">300</div>
+                    <div class="stat-label">Communities by 2030</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Years of Impact</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section class="slide slide-about" id="about">
+        <div class="about-header">
+            <p class="section-label">About The Organization</p>
+            <h2>Who is Planeterra?</h2>
+            <p>The world's leading NGO dedicated to turning travel into impact through community-based tourism</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-panel">
+                <h3>Organization Overview</h3>
+                <p>Planeterra is an international non-profit organization founded with the vision of using tourism as a powerful tool for sustainable development. Based in Toronto, Canada, the organization works globally to ensure that local communities benefit directly from tourism.</p>
+                <p>Registered as a Not-for-Profit under Canada's Act and holding 501(c)3 status in the United States, Planeterra has established itself as the leading voice for community-based tourism worldwide.</p>
+            </div>
+
+            <div class="about-panel dark">
+                <h3>Key Focus Areas</h3>
+                <ul>
+                    <li>Empowering women-led tourism enterprises</li>
+                    <li>Supporting youth employment in tourism</li>
+                    <li>Preserving Indigenous cultures and traditions</li>
+                    <li>Developing rural community tourism</li>
+                    <li>Environmental protection through tourism</li>
+                    <li>Climate and biodiversity initiatives</li>
+                </ul>
+            </div>
+
+            <div class="mission-box">
+                <h3>Mission Statement</h3>
+                <p>"To <span class="accent">empower local communities</span> by helping them create and manage tourism enterprises that generate <span class="accent">social, cultural, and economic benefits</span> — ensuring the ripple effects of tourism are endless."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DIGITAL PLATFORMS ========== -->
+    <section class="slide slide-platforms" id="platforms">
+        <div class="platforms-header">
+            <p class="section-label">Digital Audit</p>
+            <h2>Digital <span>Platforms</span> Analysis</h2>
+        </div>
+
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon">📸</div>
+                <h3>Instagram</h3>
+                <p>Visual storytelling showcasing community tourism enterprises, project updates, and inspiring travel content.</p>
+                <span class="platform-handle">@PlaneterraCares</span>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">👥</div>
+                <h3>Facebook</h3>
+                <p>Community engagement, event promotion, and longer-form content about their global initiatives.</p>
+                <span class="platform-handle">PlaneterraCares</span>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🐦</div>
+                <h3>Twitter/X</h3>
+                <p>Real-time updates, industry news, and engagement with the sustainable travel community.</p>
+                <span class="platform-handle">@PlaneterraCares</span>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p>Professional networking, partnership opportunities, and B2B communication with travel companies.</p>
+                <span class="platform-handle">Planeterra Foundation</span>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🎬</div>
+                <h3>YouTube</h3>
+                <p>Documentary-style content featuring community leaders, educational content, and impact stories.</p>
+                <span class="platform-handle">PlaneterraCares</span>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">📧</div>
+                <h3>Newsletter</h3>
+                <p>Monthly updates with stories, project highlights, and ways for supporters to get involved.</p>
+                <span class="platform-handle">Email Sign-up</span>
+            </div>
+
+            <div class="website-highlight">
+                <div class="website-info">
+                    <h3>planeterra.org</h3>
+                    <p>The central hub for all information about Planeterra's mission, impact, and ways to get involved. Features a Learning Hub, Global Community Tourism Network portal, and donation platform.</p>
+                    <div class="website-features">
+                        <span class="feature-tag">Multilingual (EN/ES)</span>
+                        <span class="feature-tag">Learning Hub</span>
+                        <span class="feature-tag">Impact Stories</span>
+                        <span class="feature-tag">Donation Portal</span>
+                        <span class="feature-tag">Network Application</span>
+                    </div>
+                </div>
+                <div class="qr-section">
+                    <h4>Scan to Visit</h4>
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://planeterra.org" alt="QR Code for planeterra.org">
+                    </div>
+                    <p class="qr-url">planeterra.org</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SWOT ANALYSIS ========== -->
+    <section class="slide slide-swot" id="swot">
+        <div class="swot-header">
+            <p class="section-label">Strategic Analysis</p>
+            <h2>Digital Presence SWOT Analysis</h2>
+        </div>
+
+        <div class="swot-grid">
+            <div class="swot-card strengths">
+                <h3>💪 Strengths</h3>
+                <ul>
+                    <li>Strong partnership with G Adventures providing credibility and reach</li>
+                    <li>Authentic, impactful storytelling with real community voices</li>
+                    <li>Well-structured website with clear mission and calls-to-action</li>
+                    <li>Multilingual content (English & Spanish) for wider reach</li>
+                    <li>Comprehensive Learning Hub with free educational resources</li>
+                    <li>Clear visual branding with consistent green/nature theme</li>
+                    <li>20+ years of established reputation and trust</li>
+                </ul>
+            </div>
+
+            <div class="swot-card weaknesses">
+                <h3>⚠️ Weaknesses</h3>
+                <ul>
+                    <li>Limited social media engagement compared to reach</li>
+                    <li>Inconsistent posting frequency across platforms</li>
+                    <li>YouTube content could be more frequent and optimized</li>
+                    <li>Website could benefit from more interactive elements</li>
+                    <li>Limited influencer partnerships and ambassador programs</li>
+                    <li>SEO could be improved for broader organic reach</li>
+                    <li>No TikTok presence (missing younger demographics)</li>
+                </ul>
+            </div>
+
+            <div class="swot-card opportunities">
+                <h3>🚀 Opportunities</h3>
+                <ul>
+                    <li>Growing global interest in sustainable and responsible travel</li>
+                    <li>TikTok and short-form video content for younger audiences</li>
+                    <li>Influencer partnerships with travel content creators</li>
+                    <li>User-generated content from travelers who visit projects</li>
+                    <li>Virtual tours and interactive experiences post-COVID</li>
+                    <li>Podcast series featuring community leaders</li>
+                    <li>Expanded B2B partnerships with travel agencies</li>
+                </ul>
+            </div>
+
+            <div class="swot-card threats">
+                <h3>🛡️ Threats</h3>
+                <ul>
+                    <li>"Voluntourism" criticism affecting community tourism perception</li>
+                    <li>Competition from other sustainable tourism initiatives</li>
+                    <li>Economic downturns reducing travel and donations</li>
+                    <li>Climate change affecting tourism destinations</li>
+                    <li>Platform algorithm changes reducing organic reach</li>
+                    <li>Greenwashing by larger travel companies</li>
+                    <li>Donor fatigue in competitive NGO landscape</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COMPETITORS ========== -->
+    <section class="slide slide-competitors" id="competitors">
+        <div class="competitors-header">
+            <p class="section-label">Competitive Landscape</p>
+            <h2>Key <span>Competitors</span></h2>
+        </div>
+
+        <div class="competitors-grid">
+            <div class="competitor-card">
+                <h3>Crooked Trails</h3>
+                <span class="type">Direct Competitor</span>
+                <p>Funds community-based ecotourism initiatives globally, including women guide training, eco-tourism centers, and village homestays across India, Nicaragua, Uganda, and Peru.</p>
+                <p class="focus">Focus: Ecotourism & Local Empowerment</p>
+            </div>
+
+            <div class="competitor-card">
+                <h3>V Social Foundation</h3>
+                <span class="type">Direct Competitor</span>
+                <p>Supports communities in tourist destinations toward prosperity and self-determination, addressing heritage loss, habitat destruction, and youth empowerment.</p>
+                <p class="focus">Focus: Community Self-Determination</p>
+            </div>
+
+            <div class="competitor-card">
+                <h3>Sustainable Travel International</h3>
+                <span class="type">Indirect Competitor</span>
+                <p>Emphasizes climate action and carbon reduction across travel industry. Provides carbon footprint measurement tools and offset projects rather than direct community support.</p>
+                <p class="focus">Focus: Carbon Reduction & Climate</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RECOMMENDATIONS ========== -->
+    <section class="slide slide-recommendations" id="recommendations">
+        <div class="recommendations-header">
+            <p class="section-label">Strategic Recommendations</p>
+            <h2>Ideas to <span>Improve</span> Digital Marketing</h2>
+        </div>
+
+        <div class="recommendations-grid">
+            <div class="recommendation-card">
+                <div class="number">01</div>
+                <h3>Launch TikTok & Reels Strategy</h3>
+                <p>Create short-form video content showcasing day-in-the-life of community tourism enterprises, behind-the-scenes of projects, and inspiring travel moments. Target Gen Z and Millennials who value purpose-driven travel.</p>
+                <span class="tag">Social Media</span>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="number">02</div>
+                <h3>Travel Influencer Partnerships</h3>
+                <p>Partner with travel influencers and content creators for authentic storytelling. Create an "Ambassador Program" for travelers who visit Planeterra projects to share their experiences.</p>
+                <span class="tag">Partnerships</span>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="number">03</div>
+                <h3>Interactive Virtual Tours</h3>
+                <p>Develop 360° virtual tours of community tourism projects. Allow potential donors and travelers to experience the impact before visiting, increasing emotional connection and donations.</p>
+                <span class="tag">Content</span>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="number">04</div>
+                <h3>Podcast Series Launch</h3>
+                <p>"Voices of Community Tourism" - Feature interviews with community leaders, travelers, and experts discussing sustainable travel, cultural preservation, and economic empowerment.</p>
+                <span class="tag">Content</span>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="number">05</div>
+                <h3>SEO & Content Marketing</h3>
+                <p>Optimize website for search engines with targeted keywords around sustainable travel, community tourism, and responsible tourism. Create a blog strategy with educational content that ranks for relevant searches.</p>
+                <span class="tag">SEO</span>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="number">06</div>
+                <h3>User-Generated Content Campaign</h3>
+                <p>Create #TravelWithPurpose campaign encouraging travelers to share their community tourism experiences. Feature best content on official channels and create a community gallery on the website.</p>
+                <span class="tag">Engagement</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== QR CODES ========== -->
+    <section class="slide-qr" id="qr">
+        <h2>Connect With Planeterra</h2>
+        <p>Scan the QR codes to explore Planeterra's digital platforms</p>
+
+        <div class="qr-grid">
+            <div class="qr-item">
+                <h4>Website</h4>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://planeterra.org" alt="Website QR">
+                <p class="handle">planeterra.org</p>
+            </div>
+
+            <div class="qr-item">
+                <h4>Instagram</h4>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://instagram.com/PlaneterraCares" alt="Instagram QR">
+                <p class="handle">@PlaneterraCares</p>
+            </div>
+
+            <div class="qr-item">
+                <h4>Facebook</h4>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://facebook.com/PlaneterraCares" alt="Facebook QR">
+                <p class="handle">PlaneterraCares</p>
+            </div>
+
+            <div class="qr-item">
+                <h4>YouTube</h4>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://youtube.com/user/PlaneterraCares" alt="YouTube QR">
+                <p class="handle">Planeterra Foundation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p class="footer-quote">
+            "By strengthening community tourism around the world, <span class="accent">economic opportunities are created</span>, places are protected, and <span class="accent">cultures are celebrated</span> through travel."
+        </p>
+        <p class="credits">
+            <strong>Digital Marketing Audit</strong> • KEDGE Business School<br>
+            Sources: Planeterra.org, G Adventures, Travel Weekly, Triple Pundit
+        </p>
+    </footer>
+
+    <script>
+        // QR Code Modal Functions
+        function openQRModal() {
+            document.getElementById('qrModal').classList.add('active');
+        }
+        
+        function closeQRModal() {
+            document.getElementById('qrModal').classList.remove('active');
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeQRModal();
+            }
+        });
+
+        // QR Badge Toggle Functionality
+        function toggleQRBadge() {
+            const qrBadge = document.getElementById('qrBadge');
+            const qrToggleBtn = document.getElementById('qrToggleBtn');
+            const qrToggleIcon = document.getElementById('qrToggleIcon');
+            const qrToggleText = document.getElementById('qrToggleText');
+            
+            if (qrBadge.classList.contains('hidden')) {
+                // Show QR badge
+                qrBadge.classList.remove('hidden');
+                qrToggleIcon.textContent = '👁️';
+                qrToggleText.textContent = 'Hide QR';
+            } else {
+                // Hide QR badge
+                qrBadge.classList.add('hidden');
+                qrToggleIcon.textContent = '👁️‍🗨️';
+                qrToggleText.textContent = 'Show QR';
+            }
+        }
+
+        // Show toggle button when QR badge is hovered or when QR is hidden
+        const qrBadge = document.getElementById('qrBadge');
+        const qrToggleBtn = document.getElementById('qrToggleBtn');
+        
+        qrBadge.addEventListener('mouseenter', () => {
+            qrToggleBtn.classList.add('visible');
+        });
+        
+        qrToggleBtn.addEventListener('mouseenter', () => {
+            qrToggleBtn.classList.add('visible');
+        });
+        
+        qrBadge.addEventListener('mouseleave', () => {
+            if (!qrBadge.classList.contains('hidden')) {
+                qrToggleBtn.classList.remove('visible');
+            }
+        });
+        
+        qrToggleBtn.addEventListener('mouseleave', () => {
+            if (!qrBadge.classList.contains('hidden')) {
+                qrToggleBtn.classList.remove('visible');
+            }
+        });
+
+        // Keep toggle button visible when QR is hidden
+        const observer = new MutationObserver(() => {
+            if (qrBadge.classList.contains('hidden')) {
+                qrToggleBtn.classList.add('visible');
+            }
+        });
+        
+        observer.observe(qrBadge, { attributes: true, attributeFilter: ['class'] });
+
+        // Fullscreen functionality
+        function toggleFullscreen() {
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const fullscreenIcon = document.getElementById('fullscreenIcon');
+            const fullscreenText = document.getElementById('fullscreenText');
+
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Update fullscreen button state
+        function updateFullscreenButton() {
+            const fullscreenIcon = document.getElementById('fullscreenIcon');
+            const fullscreenText = document.getElementById('fullscreenText');
+            const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || 
+                                 document.mozFullScreenElement || document.msFullscreenElement;
+
+            if (isFullscreen) {
+                fullscreenIcon.textContent = '⛶';
+                fullscreenText.textContent = 'Exit';
+            } else {
+                fullscreenIcon.textContent = '⛶';
+                fullscreenText.textContent = 'Fullscreen';
+            }
+        }
+
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+        // Keyboard shortcut: F key for fullscreen
+        document.addEventListener('keydown', function(e) {
+            // Only trigger if not typing in an input field
+            if (e.key === 'f' || e.key === 'F') {
+                if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    toggleFullscreen();
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
