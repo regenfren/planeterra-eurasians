@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planeterra | SMART Goals, STP Analysis & Persona Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D5016;
+            --primary-light: #4A7C23;
+            --secondary: #E8B923;
+            --accent: #D4740C;
+            --earth: #8B4513;
+            --sky: #87CEEB;
+            --cream: #FDF8F0;
+            --white: #FFFFFF;
+            --dark: #1A1A1A;
+            --muted: #666666;
+            --border: rgba(45, 80, 22, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, var(--cream) 0%, #E8F0E0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-badge span {
+            font-size: 1.2rem;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .session-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Navigation Pills */
+        .nav-pills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 25px;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .nav-pill {
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border);
+            color: var(--dark);
+        }
+
+        .nav-pill:hover, .nav-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 60px;
+            scroll-margin-top: 100px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(45, 80, 22, 0.3);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(45, 80, 22, 0.15);
+        }
+
+        .card-letter {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(212, 116, 12, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .card .metric {
+            display: inline-block;
+            background: rgba(45, 80, 22, 0.1);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        /* SMART Goals */
+        .smart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .smart-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .smart-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .smart-card .letter {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .smart-card .word {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+            margin: 5px 0 10px;
+        }
+
+        .smart-card .desc {
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Goal Cards */
+        .goal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+            border-left: 5px solid var(--primary);
+        }
+
+        .goal-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .goal-card h4 span {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+
+        .goal-card p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .goal-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .goal-metric {
+            background: rgba(45, 80, 22, 0.08);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .goal-metric strong {
+            color: var(--primary);
+        }
+
+        /* STP Section */
+        .stp-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stp-tab {
+            padding: 12px 25px;
+            border: none;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stp-tab:hover, .stp-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stp-content {
+            display: none;
+        }
+
+        .stp-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Segment Cards */
+        .segment-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .segment-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .segment-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .segment-card h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .segment-card .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .segment-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .segment-detail {
+            background: var(--cream);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .segment-detail label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .segment-detail span {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        /* Positioning Map */
+        .positioning-map {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            aspect-ratio: 1;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            background: linear-gradient(var(--cream) 49.5%, var(--border) 49.5%, var(--border) 50.5%, var(--cream) 50.5%),
+                        linear-gradient(90deg, var(--cream) 49.5%, var(--border) 49.5%, var(--border) 50.5%, var(--cream) 50.5%);
+        }
+
+        .map-label {
+            position: absolute;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .map-label.top { top: 10px; left: 50%; transform: translateX(-50%); }
+        .map-label.bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .map-label.left { left: 10px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+        .map-label.right { right: 10px; top: 50%; transform: translateY(-50%) rotate(90deg); }
+
+        .map-point {
+            position: absolute;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .map-point:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .map-point.planeterra {
+            background: var(--primary);
+            color: white;
+            top: 18%;
+            left: 65%;
+            box-shadow: 0 4px 15px rgba(45, 80, 22, 0.4);
+        }
+
+        .map-point.wwf {
+            background: #FF6B35;
+            color: white;
+            top: 25%;
+            left: 30%;
+        }
+
+        .map-point.booking {
+            background: #003580;
+            color: white;
+            top: 70%;
+            left: 75%;
+        }
+
+        .map-point.airbnb {
+            background: #FF5A5F;
+            color: white;
+            top: 45%;
+            left: 55%;
+        }
+
+        .map-point.toms {
+            background: #8B4513;
+            color: white;
+            top: 35%;
+            left: 20%;
+        }
+
+        /* Persona Section */
+        .persona-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .persona-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .persona-avatar {
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+
+        .persona-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .persona-info .tagline {
+            opacity: 0.9;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .persona-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .persona-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .persona-body {
+            padding: 40px;
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .persona-section h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .persona-section ul {
+            list-style: none;
+        }
+
+        .persona-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .persona-section li:last-child {
+            border-bottom: none;
+        }
+
+        .persona-quote {
+            background: var(--cream);
+            padding: 25px;
+            border-radius: 16px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--secondary);
+            margin-top: 25px;
+        }
+
+        /* Journey Section */
+        .journey-container {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .journey-line {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .journey-stages {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-stage {
+            text-align: center;
+        }
+
+        .stage-dot {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .stage-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .stage-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            min-height: 280px;
+        }
+
+        .stage-card h5 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stage-card h5 span {
+            font-size: 1.2rem;
+        }
+
+        .stage-card p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .touchpoints {
+            background: var(--cream);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .touchpoints label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .touchpoint-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .touchpoint {
+            background: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        /* Recommendations */
+        .reco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .reco-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--primary);
+        }
+
+        .reco-card.urgent {
+            border-top-color: var(--accent);
+        }
+
+        .reco-card.growth {
+            border-top-color: var(--secondary);
+        }
+
+        .reco-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .reco-card h4 span {
+            font-size: 1.3rem;
+        }
+
+        .reco-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .reco-impact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: var(--cream);
+            border-radius: 10px;
+            font-size: 0.85rem;
+        }
+
+        .reco-impact strong {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .nav-pills {
+                gap: 8px;
+                padding: 15px;
+            }
+
+            .nav-pill {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+
+            .journey-stages {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .journey-line {
+                display: none;
+            }
+
+            .persona-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .map-container {
+                display: none;
+            }
+
+            .session-badge {
+                position: static;
+                margin-top: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="session-badge">Session 2</div>
+        <div class="header-content">
+            <div class="logo-badge">
+                <span>🌍</span>
+                KEDGE Business School | E-Marketing Project
+            </div>
+            <h1>Planeterra Foundation</h1>
+            <p>SMART Goals, Segmentation & Targeting Analysis, and Customer Persona Journey</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-pills">
+        <a href="#smart" class="nav-pill active">SMART Goals</a>
+        <a href="#stp" class="nav-pill">STP Analysis</a>
+        <a href="#persona" class="nav-pill">Target Persona</a>
+        <a href="#journey" class="nav-pill">Customer Journey</a>
+        <a href="#recommendations" class="nav-pill">Recommendations</a>
+    </nav>
+
+    <main class="main">
+        <!-- SMART Goals Section -->
+        <section id="smart" class="section">
+            <div class="section-header">
+                <div class="section-icon">🎯</div>
+                <div>
+                    <h2 class="section-title">SMART Goals Framework</h2>
+                    <p class="section-subtitle">Strategic objectives for Planeterra's growth and impact</p>
+                </div>
+            </div>
+
+            <!-- SMART Explained -->
+            <div class="smart-grid">
+                <div class="smart-card">
+                    <div class="letter">S</div>
+                    <div class="word">Specific</div>
+                    <div class="desc">Clear, well-defined objectives with precise outcomes</div>
+                </div>
+                <div class="smart-card">
+                    <div class="letter">M</div>
+                    <div class="word">Measurable</div>
+                    <div class="desc">Quantifiable metrics to track progress</div>
+                </div>
+                <div class="smart-card">
+                    <div class="letter">A</div>
+                    <div class="word">Achievable</div>
+                    <div class="desc">Realistic given resources and constraints</div>
+                </div>
+                <div class="smart-card">
+                    <div class="letter">R</div>
+                    <div class="word">Relevant</div>
+                    <div class="desc">Aligned with mission and stakeholder needs</div>
+                </div>
+                <div class="smart-card">
+                    <div class="letter">T</div>
+                    <div class="word">Time-bound</div>
+                    <div class="desc">Clear deadlines and milestones</div>
+                </div>
+            </div>
+
+            <!-- Goals -->
+            <h3 style="margin: 40px 0 20px; color: var(--primary); font-size: 1.3rem;">Proposed SMART Goals for Planeterra</h3>
+
+            <div class="goal-card">
+                <h4>
+                    <span>Goal 1</span>
+                    Expand the Global Community Tourism Network
+                </h4>
+                <p>Grow the network from 550 to 750 community tourism enterprises across 90+ countries by December 2027, focusing on underrepresented regions in Africa and Southeast Asia.</p>
+                <div class="goal-metrics">
+                    <span class="goal-metric"><strong>S:</strong> +200 new CTEs</span>
+                    <span class="goal-metric"><strong>M:</strong> From 550 → 750</span>
+                    <span class="goal-metric"><strong>A:</strong> ~8 new/month</span>
+                    <span class="goal-metric"><strong>R:</strong> Project 300 aligned</span>
+                    <span class="goal-metric"><strong>T:</strong> By Dec 2027</span>
+                </div>
+            </div>
+
+            <div class="goal-card">
+                <h4>
+                    <span>Goal 2</span>
+                    Increase Traveler Engagement & Awareness
+                </h4>
+                <p>Achieve 100,000 monthly website visitors and grow social media following to 150,000 across platforms by Q4 2026, through content marketing highlighting community impact stories.</p>
+                <div class="goal-metrics">
+                    <span class="goal-metric"><strong>S:</strong> Digital reach growth</span>
+                    <span class="goal-metric"><strong>M:</strong> 100K visits, 150K followers</span>
+                    <span class="goal-metric"><strong>A:</strong> Content-driven approach</span>
+                    <span class="goal-metric"><strong>R:</strong> Drives donations & awareness</span>
+                    <span class="goal-metric"><strong>T:</strong> By Q4 2026</span>
+                </div>
+            </div>
+
+            <div class="goal-card">
+                <h4>
+                    <span>Goal 3</span>
+                    Scale the Global Community Tourism Fund
+                </h4>
+                <p>Increase annual fund distribution from $50,000 to $150,000 by 2027, supporting 60+ community enterprises annually with grants up to $5,000 each.</p>
+                <div class="goal-metrics">
+                    <span class="goal-metric"><strong>S:</strong> 3x fund increase</span>
+                    <span class="goal-metric"><strong>M:</strong> $50K → $150K/year</span>
+                    <span class="goal-metric"><strong>A:</strong> Corporate partnerships</span>
+                    <span class="goal-metric"><strong>R:</strong> Direct community impact</span>
+                    <span class="goal-metric"><strong>T:</strong> By 2027</span>
+                </div>
+            </div>
+
+            <div class="goal-card">
+                <h4>
+                    <span>Goal 4</span>
+                    Environmental Impact Expansion
+                </h4>
+                <p>Grow the tree-planting program from 2.65 million to 5 million trees by 2028, engaging 80% of partner communities in nature-positive initiatives.</p>
+                <div class="goal-metrics">
+                    <span class="goal-metric"><strong>S:</strong> Tree program growth</span>
+                    <span class="goal-metric"><strong>M:</strong> 2.65M → 5M trees</span>
+                    <span class="goal-metric"><strong>A:</strong> Partner-led planting</span>
+                    <span class="goal-metric"><strong>R:</strong> SDG alignment</span>
+                    <span class="goal-metric"><strong>T:</strong> By 2028</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- STP Analysis Section -->
+        <section id="stp" class="section">
+            <div class="section-header">
+                <div class="section-icon">📊</div>
+                <div>
+                    <h2 class="section-title">Segmentation, Targeting & Positioning</h2>
+                    <p class="section-subtitle">Understanding Planeterra's market strategy</p>
+                </div>
+            </div>
+
+            <div class="stp-tabs">
+                <button class="stp-tab active" onclick="showSTP('segmentation')">Segmentation</button>
+                <button class="stp-tab" onclick="showSTP('targeting')">Targeting</button>
+                <button class="stp-tab" onclick="showSTP('positioning')">Positioning</button>
+            </div>
+
+            <!-- Segmentation -->
+            <div id="segmentation" class="stp-content active">
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon" style="background: #E8F5E9;">🌱</div>
+                        <div>
+                            <h4>Conscious Travelers</h4>
+                            <span class="tag" style="background: #E8F5E9; color: var(--primary);">Primary Segment</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Travelers who actively seek meaningful experiences that benefit local communities. 73% want spending to benefit locals, 69% want to leave places better.</p>
+                    <div class="segment-details">
+                        <div class="segment-detail">
+                            <label>Demographics</label>
+                            <span>25-45 years, mid-high income</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Geography</label>
+                            <span>North America, Europe, Australia</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Behavior</label>
+                            <span>Research-heavy, values-driven</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Market Size</label>
+                            <span>53% of all travelers (growing)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon" style="background: #FFF3E0;">🎒</div>
+                        <div>
+                            <h4>Adventure Seekers</h4>
+                            <span class="tag" style="background: #FFF3E0; color: var(--accent);">Secondary Segment</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Young travelers seeking authentic, off-the-beaten-path experiences. Attracted to unique cultural immersion and community homestays.</p>
+                    <div class="segment-details">
+                        <div class="segment-detail">
+                            <label>Demographics</label>
+                            <span>18-35, Millennials & Gen Z</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Geography</label>
+                            <span>Global, digitally native</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Behavior</label>
+                            <span>Social media influenced</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Price Sensitivity</label>
+                            <span>Moderate (value-focused)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon" style="background: #E3F2FD;">🏢</div>
+                        <div>
+                            <h4>Travel Industry Partners</h4>
+                            <span class="tag" style="background: #E3F2FD; color: #1976D2;">B2B Segment</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Tour operators, travel agencies, and hospitality companies seeking to integrate sustainable community experiences into their offerings.</p>
+                    <div class="segment-details">
+                        <div class="segment-detail">
+                            <label>Type</label>
+                            <span>Tour operators, OTAs, hotels</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Motivation</label>
+                            <span>ESG compliance, differentiation</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Key Partner</label>
+                            <span>G Adventures (20+ years)</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Opportunity</label>
+                            <span>High growth potential</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon" style="background: #FCE4EC;">💝</div>
+                        <div>
+                            <h4>Impact Donors & Philanthropists</h4>
+                            <span class="tag" style="background: #FCE4EC; color: #C2185B;">Support Segment</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--muted); font-size: 0.95rem;">Individuals and foundations who donate to support community development, even if not actively traveling. Motivated by measurable social impact.</p>
+                    <div class="segment-details">
+                        <div class="segment-detail">
+                            <label>Demographics</label>
+                            <span>35-65, high income</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Motivation</label>
+                            <span>Tangible impact stories</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Channel</label>
+                            <span>Direct giving, corporate CSR</span>
+                        </div>
+                        <div class="segment-detail">
+                            <label>Value</label>
+                            <span>High lifetime value</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Targeting -->
+            <div id="targeting" class="stp-content">
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-letter">1</div>
+                        <h3>Primary Target: The Conscious Explorer</h3>
+                        <p>Mid-career professionals (28-45) with disposable income who prioritize authentic travel experiences. They research thoroughly and are willing to pay premium for verified community impact.</p>
+                        <span class="metric">Est. 45% of engagement</span>
+                    </div>
+                    <div class="card">
+                        <div class="card-letter">2</div>
+                        <h3>Secondary Target: Gen Z Changemakers</h3>
+                        <p>Young travelers (18-27) highly active on social media who amplify impact stories. Lower immediate spending but high brand advocacy potential and future lifetime value.</p>
+                        <span class="metric">Est. 30% of engagement</span>
+                    </div>
+                    <div class="card">
+                        <div class="card-letter">3</div>
+                        <h3>B2B Target: Sustainable Tour Operators</h3>
+                        <p>Small-to-medium tour companies looking to differentiate through genuine community partnerships. Seeking turnkey solutions for sustainable itinerary integration.</p>
+                        <span class="metric">Est. 15% of partnerships</span>
+                    </div>
+                    <div class="card">
+                        <div class="card-letter">4</div>
+                        <h3>Support Target: Corporate ESG Programs</h3>
+                        <p>Companies with travel-related CSR initiatives seeking credible NGO partnerships. Value transparent impact reporting and employee engagement opportunities.</p>
+                        <span class="metric">Est. 10% of funding</span>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; padding: 25px; margin-top: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">📌 Targeting Strategy Summary</h4>
+                    <p style="color: var(--muted);">Planeterra employs a <strong>differentiated targeting strategy</strong>, creating tailored value propositions for each segment while maintaining a unified mission. The focus is on quality over quantity—attracting deeply committed travelers and partners rather than mass-market appeal.</p>
+                </div>
+            </div>
+
+            <!-- Positioning -->
+            <div id="positioning" class="stp-content">
+                <div class="positioning-map">
+                    <h4 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Competitive Positioning Map</h4>
+                    <div class="map-container">
+                        <span class="map-label top">High Community Focus</span>
+                        <span class="map-label bottom">Low Community Focus</span>
+                        <span class="map-label left">Non-Profit</span>
+                        <span class="map-label right">For-Profit</span>
+                        
+                        <div class="map-point planeterra">🌍 Planeterra</div>
+                        <div class="map-point wwf">WWF Travel</div>
+                        <div class="map-point booking">Booking.com</div>
+                        <div class="map-point airbnb">Airbnb Experiences</div>
+                        <div class="map-point toms">TOMS Passport</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <div class="goal-card">
+                        <h4>🎯 Planeterra's Positioning Statement</h4>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--dark);">
+                            <em>"For <strong>conscious travelers</strong> who want their journeys to create lasting positive change, <strong>Planeterra</strong> is the <strong>community tourism foundation</strong> that ensures your travel directly supports local livelihoods. Unlike traditional travel charities that operate separately from tourism, Planeterra integrates community enterprises into actual travel experiences—making impact a seamless part of the journey, not an afterthought."</em>
+                        </p>
+                    </div>
+
+                    <div class="cards-grid" style="margin-top: 25px;">
+                        <div class="card">
+                            <h3>🏆 Key Differentiators</h3>
+                            <ul style="list-style: none; color: var(--muted);">
+                                <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">✓ 20+ year partnership with G Adventures</li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">✓ 550+ community enterprises in network</li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">✓ Direct integration into tour itineraries</li>
+                                <li style="padding: 8px 0;">✓ Transparent impact measurement</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>⚡ Competitive Advantages</h3>
+                            <ul style="list-style: none; color: var(--muted);">
+                                <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">✓ Market-driven, traveler-centric model</li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">✓ Focus on women, youth, Indigenous groups</li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid var(--border);">✓ Environmental + social dual impact</li>
+                                <li style="padding: 8px 0;">✓ Scalable mentorship framework</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persona Section -->
+        <section id="persona" class="section">
+            <div class="section-header">
+                <div class="section-icon">👤</div>
+                <div>
+                    <h2 class="section-title">Target Persona</h2>
+                    <p class="section-subtitle">Meet Emma — The Conscious Explorer</p>
+                </div>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-header">
+                    <div class="persona-avatar">👩‍💼</div>
+                    <div class="persona-info">
+                        <h3>Emma Chen</h3>
+                        <p class="tagline">34 | Marketing Manager | Toronto, Canada</p>
+                        <div class="persona-tags">
+                            <span class="persona-tag">🌱 Sustainability advocate</span>
+                            <span class="persona-tag">📸 Travel photographer</span>
+                            <span class="persona-tag">🧘 Mindful consumer</span>
+                            <span class="persona-tag">📚 Avid researcher</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="persona-body">
+                    <div class="persona-grid">
+                        <div class="persona-section">
+                            <h4>📋 Background</h4>
+                            <ul>
+                                <li>University educated, $85K salary</li>
+                                <li>Takes 2-3 international trips/year</li>
+                                <li>Active on Instagram & TikTok</li>
+                                <li>Member of travel Facebook groups</li>
+                                <li>Donates to 2-3 charities annually</li>
+                            </ul>
+                        </div>
+                        <div class="persona-section">
+                            <h4>🎯 Goals & Motivations</h4>
+                            <ul>
+                                <li>Experience authentic local cultures</li>
+                                <li>Ensure her spending helps communities</li>
+                                <li>Share meaningful travel stories</li>
+                                <li>Reduce her travel footprint</li>
+                                <li>Connect with like-minded travelers</li>
+                            </ul>
+                        </div>
+                        <div class="persona-section">
+                            <h4>😰 Pain Points</h4>
+                            <ul>
+                                <li>Hard to verify real community impact</li>
+                                <li>"Greenwashing" skepticism</li>
+                                <li>Limited time for deep research</li>
+                                <li>Overwhelmed by options</li>
+                                <li>Budget constraints vs. values</li>
+                            </ul>
+                        </div>
+                        <div class="persona-section">
+                            <h4>💡 How Planeterra Helps</h4>
+                            <ul>
+                                <li>Verified, transparent impact data</li>
+                                <li>Pre-vetted community experiences</li>
+                                <li>Integrated into G Adventures tours</li>
+                                <li>Compelling stories to share</li>
+                                <li>Community of conscious travelers</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="persona-quote">
+                        "I don't want to just visit a place—I want to know that my presence made a real difference for the people who live there. Show me the impact, and I'll become your biggest advocate."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section id="journey" class="section">
+            <div class="section-header">
+                <div class="section-icon">🗺️</div>
+                <div>
+                    <h2 class="section-title">Customer Journey Map</h2>
+                    <p class="section-subtitle">Emma's path from awareness to advocacy</p>
+                </div>
+            </div>
+
+            <div class="journey-container">
+                <div class="journey-line"></div>
+                <div class="journey-stages">
+                    <div class="journey-stage">
+                        <div class="stage-dot"></div>
+                        <div class="stage-card">
+                            <h5><span>💭</span> Awareness</h5>
+                            <p>Emma discovers Planeterra through a G Adventures trip or social media content about community tourism impact.</p>
+                            <div class="touchpoints">
+                                <label>Touchpoints</label>
+                                <div class="touchpoint-list">
+                                    <span class="touchpoint">Instagram Reels</span>
+                                    <span class="touchpoint">G Adventures site</span>
+                                    <span class="touchpoint">Travel blogs</span>
+                                    <span class="touchpoint">Word of mouth</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journey-stage">
+                        <div class="stage-dot"></div>
+                        <div class="stage-card">
+                            <h5><span>🔍</span> Consideration</h5>
+                            <p>She researches Planeterra's model, reads impact reports, and compares to other sustainable travel options.</p>
+                            <div class="touchpoints">
+                                <label>Touchpoints</label>
+                                <div class="touchpoint-list">
+                                    <span class="touchpoint">Planeterra.org</span>
+                                    <span class="touchpoint">Impact stories</span>
+                                    <span class="touchpoint">Reviews</span>
+                                    <span class="touchpoint">Email newsletter</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journey-stage">
+                        <div class="stage-dot"></div>
+                        <div class="stage-card">
+                            <h5><span>✅</span> Decision</h5>
+                            <p>Emma books a G Adventures tour featuring Planeterra projects, or donates to the Global Community Tourism Fund.</p>
+                            <div class="touchpoints">
+                                <label>Touchpoints</label>
+                                <div class="touchpoint-list">
+                                    <span class="touchpoint">Booking page</span>
+                                    <span class="touchpoint">Donation portal</span>
+                                    <span class="touchpoint">Trip confirmation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journey-stage">
+                        <div class="stage-dot"></div>
+                        <div class="stage-card">
+                            <h5><span>🌍</span> Experience</h5>
+                            <p>During her trip, she visits community enterprises, meets locals, and sees impact firsthand.</p>
+                            <div class="touchpoints">
+                                <label>Touchpoints</label>
+                                <div class="touchpoint-list">
+                                    <span class="touchpoint">Community visits</span>
+                                    <span class="touchpoint">Local meals</span>
+                                    <span class="touchpoint">Handicraft shops</span>
+                                    <span class="touchpoint">Homestays</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journey-stage">
+                        <div class="stage-dot"></div>
+                        <div class="stage-card">
+                            <h5><span>📣</span> Advocacy</h5>
+                            <p>Emma shares her experience on social media, recommends to friends, and becomes a recurring donor.</p>
+                            <div class="touchpoints">
+                                <label>Touchpoints</label>
+                                <div class="touchpoint-list">
+                                    <span class="touchpoint">Social sharing</span>
+                                    <span class="touchpoint">Reviews</span>
+                                    <span class="touchpoint">Monthly giving</span>
+                                    <span class="touchpoint">Referrals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section id="recommendations" class="section">
+            <div class="section-header">
+                <div class="section-icon">💡</div>
+                <div>
+                    <h2 class="section-title">Strategic Recommendations</h2>
+                    <p class="section-subtitle">Actionable improvements for each journey stage</p>
+                </div>
+            </div>
+
+            <div class="reco-grid">
+                <div class="reco-card urgent">
+                    <h4><span>🎯</span> Awareness: Expand Social Proof</h4>
+                    <p>Create a TikTok/Reels content series featuring "Day in the Life" of community enterprise owners. User-generated content from travelers showing real interactions converts 4x better than branded content.</p>
+                    <div class="reco-impact">
+                        <strong>Impact:</strong> +40% reach among Gen Z travelers
+                    </div>
+                </div>
+
+                <div class="reco-card">
+                    <h4><span>🔍</span> Consideration: Interactive Impact Calculator</h4>
+                    <p>Develop a "Trip Impact Calculator" on the website showing exactly how booking a specific tour benefits communities (e.g., "Your Peru trip = 3 months of income for a local family").</p>
+                    <div class="reco-impact">
+                        <strong>Impact:</strong> +25% conversion from site visitors
+                    </div>
+                </div>
+
+                <div class="reco-card growth">
+                    <h4><span>✅</span> Decision: Simplify the Giving Journey</h4>
+                    <p>Add a "Round Up for Community" option at checkout on G Adventures, allowing travelers to donate the rounded-up difference. Micro-donations lower friction significantly.</p>
+                    <div class="reco-impact">
+                        <strong>Impact:</strong> +60% donor acquisition
+                    </div>
+                </div>
+
+                <div class="reco-card">
+                    <h4><span>🌍</span> Experience: Digital Storytelling Kit</h4>
+                    <p>Provide travelers with a "Share Kit" including pre-written captions, hashtags, and photo prompts to encourage real-time social sharing during community visits.</p>
+                    <div class="reco-impact">
+                        <strong>Impact:</strong> +80% user-generated content
+                    </div>
+                </div>
+
+                <div class="reco-card urgent">
+                    <h4><span>📣</span> Advocacy: Alumni Ambassador Program</h4>
+                    <p>Create a formal ambassador program for returning travelers, offering exclusive updates, early access to new projects, and referral incentives for bringing friends.</p>
+                    <div class="reco-impact">
+                        <strong>Impact:</strong> +35% repeat engagement
+                    </div>
+                </div>
+
+                <div class="reco-card growth">
+                    <h4><span>🤝</span> B2B: Partner Certification Badge</h4>
+                    <p>Develop a "Planeterra Verified Partner" badge for tour operators, with clear criteria and annual audits. Creates aspirational status and expands network beyond G Adventures.</p>
+                    <div class="reco-impact">
+                        <strong>Impact:</strong> +50% B2B partnerships
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Planeterra Foundation | E-Marketing Strategy Analysis</p>
+        <p style="margin-top: 5px;">KEDGE Business School | Session 2</p>
+        <div class="footer-links">
+            <a href="https://planeterra.org" target="_blank">planeterra.org</a>
+            <a href="../session-1/index.html">← Session 1</a>
+        </div>
+    </footer>
+
+    <script>
+        // STP Tab Functionality
+        function showSTP(tab) {
+            document.querySelectorAll('.stp-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.stp-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Smooth scroll for nav pills
+        document.querySelectorAll('.nav-pill').forEach(pill => {
+            pill.addEventListener('click', function(e) {
+                document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Highlight nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navPills = document.querySelectorAll('.nav-pill');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
