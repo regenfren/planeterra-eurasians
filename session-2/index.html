@@ -903,9 +903,250 @@
                 display: inline-block;
             }
         }
+
+        /* QR Code Badge - Top Left */
+        .qr-badge {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .qr-badge:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 10px 40px rgba(45, 80, 22, 0.25);
+            transform: scale(1.02);
+        }
+        
+        .qr-badge .qr-code-container {
+            background: var(--cream);
+            padding: 6px;
+            border-radius: 8px;
+        }
+        
+        .qr-badge .qr-code-container img {
+            display: block;
+        }
+        
+        .qr-badge-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .qr-badge-text span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .qr-badge-text strong {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .qr-badge.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-100px);
+        }
+
+        /* QR Toggle Button */
+        .qr-toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1002;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .qr-toggle-btn.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .qr-toggle-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* QR Modal Overlay */
+        .qr-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .qr-modal-overlay.active {
+            display: flex;
+        }
+        
+        .qr-modal {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: modalIn 0.3s ease;
+        }
+        
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .qr-modal h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .qr-modal p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+        
+        .qr-modal .qr-code-large {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 16px;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-modal .qr-code-large img {
+            display: block;
+        }
+        
+        .qr-modal .close-hint {
+            margin-top: 20px;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        /* Fullscreen Button */
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .fullscreen-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.3);
+        }
+
+        .fullscreen-btn .icon {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .qr-badge {
+                display: none;
+            }
+            .fullscreen-btn {
+                padding: 10px 14px;
+                font-size: 0.8rem;
+            }
+            .fullscreen-btn span:not(.icon) {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- QR Code Badge - Top Left (Clickable) -->
+    <div class="qr-badge" id="qrBadge" onclick="openQRModal()">
+        <div class="qr-code-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://regenfren.github.io/planeterra-eurasians/session-2/" alt="QR Code" width="80" height="80">
+        </div>
+        <div class="qr-badge-text">
+            <span>Click to enlarge</span>
+            <strong>📱 Scan Me!</strong>
+        </div>
+    </div>
+
+    <!-- QR Toggle Button -->
+    <button class="qr-toggle-btn" id="qrToggleBtn" onclick="toggleQRBadge()" title="Toggle QR Code">
+        <span id="qrToggleIcon">👁️</span>
+        <span id="qrToggleText">Show QR</span>
+    </button>
+
+    <!-- Fullscreen Button -->
+    <button class="fullscreen-btn" onclick="toggleFullscreen()" id="fullscreenBtn" title="Press F for fullscreen">
+        <span class="icon" id="fullscreenIcon">⛶</span>
+        <span id="fullscreenText">Fullscreen</span>
+    </button>
+    
+    <!-- QR Modal (Enlarged View) -->
+    <div class="qr-modal-overlay" id="qrModal" onclick="closeQRModal()">
+        <div class="qr-modal" onclick="event.stopPropagation()">
+            <h2>📱 Scan to View on Your Phone</h2>
+            <p>Point your camera at the QR code</p>
+            <div class="qr-code-large">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://regenfren.github.io/planeterra-eurasians/session-2/" alt="QR Code" width="280" height="280">
+            </div>
+            <p class="close-hint">Click anywhere to close</p>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="session-badge">Session 2</div>
@@ -1536,6 +1777,89 @@
                     pill.classList.add('active');
                 }
             });
+        });
+
+        // QR Code Modal Functions
+        function openQRModal() {
+            document.getElementById('qrModal').classList.add('active');
+        }
+        
+        function closeQRModal() {
+            document.getElementById('qrModal').classList.remove('active');
+        }
+
+        // QR Badge Toggle Functionality
+        function toggleQRBadge() {
+            const qrBadge = document.getElementById('qrBadge');
+            const qrToggleIcon = document.getElementById('qrToggleIcon');
+            const qrToggleText = document.getElementById('qrToggleText');
+            
+            if (qrBadge.classList.contains('hidden')) {
+                qrBadge.classList.remove('hidden');
+                qrToggleIcon.textContent = '👁️';
+                qrToggleText.textContent = 'Hide QR';
+            } else {
+                qrBadge.classList.add('hidden');
+                qrToggleIcon.textContent = '👁️‍🗨️';
+                qrToggleText.textContent = 'Show QR';
+            }
+        }
+
+        // Show toggle button on hover
+        const qrBadge = document.getElementById('qrBadge');
+        const qrToggleBtn = document.getElementById('qrToggleBtn');
+        
+        qrBadge.addEventListener('mouseenter', () => qrToggleBtn.classList.add('visible'));
+        qrToggleBtn.addEventListener('mouseenter', () => qrToggleBtn.classList.add('visible'));
+        qrBadge.addEventListener('mouseleave', () => {
+            if (!qrBadge.classList.contains('hidden')) qrToggleBtn.classList.remove('visible');
+        });
+        qrToggleBtn.addEventListener('mouseleave', () => {
+            if (!qrBadge.classList.contains('hidden')) qrToggleBtn.classList.remove('visible');
+        });
+
+        // Keep toggle visible when QR is hidden
+        const observer = new MutationObserver(() => {
+            if (qrBadge.classList.contains('hidden')) qrToggleBtn.classList.add('visible');
+        });
+        observer.observe(qrBadge, { attributes: true, attributeFilter: ['class'] });
+
+        // Fullscreen functionality
+        function toggleFullscreen() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+        }
+
+        // Update fullscreen button state
+        function updateFullscreenButton() {
+            const fullscreenIcon = document.getElementById('fullscreenIcon');
+            const fullscreenText = document.getElementById('fullscreenText');
+            const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+            fullscreenIcon.textContent = '⛶';
+            fullscreenText.textContent = isFullscreen ? 'Exit' : 'Fullscreen';
+        }
+
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeQRModal();
+            if ((e.key === 'f' || e.key === 'F') && e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                toggleFullscreen();
+            }
         });
     </script>
 </body>
