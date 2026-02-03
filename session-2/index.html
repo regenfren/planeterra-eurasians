@@ -445,35 +445,40 @@
         .positioning-map {
             background: white;
             border-radius: 20px;
-            padding: 40px;
+            padding: 40px 80px;
             box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+            overflow: visible;
         }
 
         .map-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            aspect-ratio: 1;
+            aspect-ratio: 1.2;
             border: 2px solid var(--border);
             border-radius: 16px;
             background: linear-gradient(var(--cream) 49.5%, var(--border) 49.5%, var(--border) 50.5%, var(--cream) 50.5%),
                         linear-gradient(90deg, var(--cream) 49.5%, var(--border) 49.5%, var(--border) 50.5%, var(--cream) 50.5%);
+            padding: 60px 80px;
         }
 
         .map-label {
             position: absolute;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 1px;
+            background: white;
+            padding: 4px 10px;
+            border-radius: 4px;
         }
 
-        .map-label.top { top: 10px; left: 50%; transform: translateX(-50%); }
-        .map-label.bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
-        .map-label.left { left: 10px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
-        .map-label.right { right: 10px; top: 50%; transform: translateY(-50%) rotate(90deg); }
+        .map-label.top { top: 15px; left: 50%; transform: translateX(-50%); }
+        .map-label.bottom { bottom: 15px; left: 50%; transform: translateX(-50%); }
+        .map-label.left { left: -50px; top: 50%; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; }
+        .map-label.right { right: -60px; top: 50%; transform: translateY(-50%) rotate(90deg); white-space: nowrap; }
 
         .map-point {
             position: absolute;
@@ -494,68 +499,68 @@
         .map-point.planeterra {
             background: var(--primary);
             color: white;
-            top: 12%;
-            left: 42%;
+            top: 18%;
+            left: 40%;
             box-shadow: 0 4px 15px rgba(45, 80, 22, 0.4);
         }
 
         .map-point.crooked {
             background: #7B8D42;
             color: white;
-            top: 18%;
+            top: 22%;
             left: 15%;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
         }
 
         .map-point.vsocial {
             background: #9C6B30;
             color: white;
-            top: 25%;
-            left: 10%;
-            font-size: 0.7rem;
+            top: 32%;
+            left: 12%;
+            font-size: 0.75rem;
         }
 
         .map-point.sti {
             background: #2E7D32;
             color: white;
-            top: 40%;
-            left: 25%;
-            font-size: 0.7rem;
+            top: 48%;
+            left: 22%;
+            font-size: 0.75rem;
         }
 
         .map-point.gadventures {
             background: #E53935;
             color: white;
-            top: 18%;
-            left: 68%;
+            top: 20%;
+            left: 62%;
         }
 
         .map-point.intrepid {
             background: #FF7043;
             color: white;
-            top: 22%;
-            left: 75%;
+            top: 28%;
+            left: 70%;
         }
 
         .map-point.booking {
             background: #003580;
             color: white;
-            top: 75%;
-            left: 88%;
+            top: 72%;
+            left: 78%;
         }
 
         .map-point.airbnb {
             background: #FF5A5F;
             color: white;
-            top: 50%;
-            left: 78%;
+            top: 55%;
+            left: 72%;
         }
 
         .map-point.wwf {
             background: #FF6B35;
             color: white;
-            top: 28%;
-            left: 35%;
+            top: 30%;
+            left: 32%;
         }
 
         /* Persona Section */
@@ -578,13 +583,17 @@
         .persona-avatar {
             width: 120px;
             height: 120px;
-            background: rgba(255,255,255,0.2);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
             flex-shrink: 0;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .persona-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .persona-info h3 {
@@ -1259,7 +1268,9 @@
 
             <div class="persona-card">
                 <div class="persona-header">
-                    <div class="persona-avatar">👩‍💼</div>
+                    <div class="persona-avatar">
+                        <img src="assets/emma-chen-persona.png" alt="Emma Chen">
+                    </div>
                     <div class="persona-info">
                         <h3>Emma Chen</h3>
                         <p class="tagline">34 | Marketing Manager | Toronto, Canada</p>
